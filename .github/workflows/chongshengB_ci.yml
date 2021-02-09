@@ -145,7 +145,7 @@ jobs:
         if: ${{ success() }}
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.build_variant }}
+          name: ${{ env.build_variant }}_v${{ steps.current-time.outputs.formattedTime }}
           path: ${{ env.images_dir }}
       - name: Upload images to Releases
         if: ${{ success() }}
