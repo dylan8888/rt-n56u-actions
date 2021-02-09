@@ -119,7 +119,7 @@ jobs:
         uses: 1466587594/get-current-time@v2
         id: current-time
         with:
-          format: yyyy-MM-dd
+          format: yyyyMMdd
           utcOffset: "+08:00"          
       - name: Start build firmware
         run: |                         # 执行构建固件
@@ -139,7 +139,7 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ${{ env.images_dir }}/*.trx
-          tag: hanwckf_${{ steps.current-time.outputs.formattedTime }}
+          tag: hanwckf_v${{ steps.current-time.outputs.formattedTime }}
           overwrite: true
           file_glob: true    
     #  - name: Upload images to CowTransfer
