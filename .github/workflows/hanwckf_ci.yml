@@ -72,9 +72,7 @@ jobs:
           - build_variant: "mt7621"
             targets: "K2P_nano-5.0 K2P-5.0 DIR-878-5.0 RM2100 R2100"
           - build_variant: "mt7621-usb-1"
-            targets: "A3004NS MSG1500 WR1200JS E8820V2 NEWIFI3 RT-AC1200GU"
-          - build_variant: "mt7621-usb-2"
-            targets: "JCG-836PRO-5.0 JCG-AC860M-5.0 JCG-Y2-5.0 DIR-882-5.0 MI-R3G B70 XY-C1"
+            targets: "A3004NS MSG1500 WR1200JS E8820V2 NEWIFI3 RT-AC1200GU JCG-836PRO-5.0 JCG-AC860M-5.0 JCG-Y2-5.0 DIR-882-5.0 MI-R3G B70 XY-C1"
           - build_variant: "mt7628"
             targets: "360P2 HC5861B HC5761A HC5661A MI-NANO MZ-R13 MZ-R13P"
     steps:
@@ -127,8 +125,17 @@ jobs:
         if: ${{ success() }}
         uses: actions/upload-artifact@main
         with:
-          name: padavan_${{ env.build_variant }}
+          name: ${{ env.build_variant }}
           path: ${{ env.images_dir }}
+      - name: Upload images to Releases
+        if: ${{ success() }}
+        uses: svenstaro/upload-release-action@2.2.0
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ${{ env.images_dir }}/*.trx
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true    
     #  - name: Upload images to CowTransfer
     #    if: env.upload_cowtransfer == 'true' && success()
     #    run: |                         # 上传到奶牛快传
