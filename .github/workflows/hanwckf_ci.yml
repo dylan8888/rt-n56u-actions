@@ -129,15 +129,15 @@ jobs:
         with:
           name: padavan_${{ env.build_variant }}
           path: ${{ env.images_dir }}
-      - name: Upload images to CowTransfer
-        if: env.upload_cowtransfer == 'true' && success()
-        run: |                         # 上传到奶牛快传
-          curl -fsSL git.io/file-transfer | sh
-          ./transfer cow --block 2621440 -s -p 64 --no-progress ${images_dir} 2>&1 | tee cowtransfer.log
-          echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
-      - name: Upload images to WeTransfer
-        if: env.upload_wetransfer == 'true' && success()
-        run: |                         # 上传到 WeTransfer
-          curl -fsSL git.io/file-transfer | sh
-          ./transfer wet -s -p 16 --no-progress ${images_dir} 2>&1 | tee wetransfer.log
-          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+    #  - name: Upload images to CowTransfer
+    #    if: env.upload_cowtransfer == 'true' && success()
+    #    run: |                         # 上传到奶牛快传
+    #      curl -fsSL git.io/file-transfer | sh
+    #      ./transfer cow --block 2621440 -s -p 64 --no-progress ${images_dir} 2>&1 | tee cowtransfer.log
+    #      echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
+    #  - name: Upload images to WeTransfer
+    #    if: env.upload_wetransfer == 'true' && success()
+    #    run: |                         # 上传到 WeTransfer
+    #      curl -fsSL git.io/file-transfer | sh
+    #      ./transfer wet -s -p 16 --no-progress ${images_dir} 2>&1 | tee wetransfer.log
+    #      echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
