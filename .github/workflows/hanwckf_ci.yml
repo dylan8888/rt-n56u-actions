@@ -119,7 +119,7 @@ jobs:
         uses: 1466587594/get-current-time@v2
         id: current-time
         with:
-          format: yyyyMMdd
+          format: YYYYMMDD
           utcOffset: "+08:00"          
       - name: Start build firmware
         run: |                         # 执行构建固件
