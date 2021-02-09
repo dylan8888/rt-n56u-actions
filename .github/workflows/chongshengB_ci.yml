@@ -1,7 +1,7 @@
 #修改 targets: 中的 "PSG1218" 为你需要编译的型号，注意名称要与configs/templates/目录下的名字相同
 # by: TurBoTse
 
-name: ChongshengB_Padavan_CI
+name: chongshengB_ci
 
 on: 
 #  release:
