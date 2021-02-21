@@ -127,7 +127,7 @@ jobs:
           if [ -d chongshengB/scripts ]; then cp -f chongshengB/scripts/* $work_dir; fi
           if [ -d chongshengB/modify ]; then cp -rf chongshengB/modify/* $work_dir; fi
           cd $work_dir
-          for m in $targets; do if [ -f $m.config ]; then echo "拷贝 $m.config"; cp -f ./$m.config $config_dir/$m.config; fi; echo "输入配置文件$m.config内容";cat $config_dir/$m.config; done; \
+          for m in $targets; do if [ -f $m.config ]; then echo "拷贝 $m.config"; cp -f ./$m.config $config_dir/$m.config; fi; echo "输出配置文件$m.config内容";cat $config_dir/$m.config; done; \
           for m in $targets; do if [ -f public.sh ]; then echo "执行 public.sh"; sh ./public.sh; fi; if [ -f $m.sh ]; then echo "执行 $m.sh"; sh ./$m.sh; fi; done; \
       - name: Get current time
         uses: 1466587594/get-current-time@v2
