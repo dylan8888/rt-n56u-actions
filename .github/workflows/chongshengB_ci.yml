@@ -138,7 +138,7 @@ jobs:
       - name: Start build firmware
         run: |                         # 执行构建固件
           cd $work_dir
-          for m in $targets; do fakeroot ./build_firmware_modify $m; \
+          for m in $targets; do fakeroot ./build_firmware_modify $m 0; \
           #if [ $? = 0 ]; then mv -f images/*.trx $images_dir/${m}_$(date +%Y%m%d).trx; else exit 1; fi; \
           if [ $? = 0 ]; then mv -f images/*.trx $images_dir/${m}.trx; else exit 1; fi; \
           ./clear_tree >/dev/null 2>&1; done
