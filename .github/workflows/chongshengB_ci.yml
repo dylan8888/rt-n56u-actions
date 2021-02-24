@@ -138,17 +138,10 @@ jobs:
       - name: Start build firmware
         run: |                         # 执行构建固件
           cd $work_dir
-          for m in $targets; 
-          do 
-          echo "构建 $m 固件"
-          sudo ./build_firmware_ci $m 0
+          for m in $targets; do cp -f configs/templates/$m.config .config; fakeroot ./build_firmware_modify $m 0; \
           #if [ $? = 0 ]; then mv -f images/*.trx $images_dir/${m}_$(date +%Y%m%d).trx; else exit 1; fi; \
-          if [ $? = 0 ]; then 
-          sudo mv -f images/*.trx $images_dir/${m}.trx
-          else exit 1
-          fi
-          sudo ./clear_tree_simple >/dev/null 2>&1
-          done
+          if [ $? = 0 ]; then mv -f images/*.trx $images_dir/${m}.trx; else exit 1; fi; \
+          ./clear_tree_simple >/dev/null 2>&1; done
       - name: Upload images to Artifact
         if: ${{ success() }}
         uses: actions/upload-artifact@main
