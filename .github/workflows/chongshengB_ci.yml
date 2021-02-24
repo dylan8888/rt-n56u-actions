@@ -141,7 +141,7 @@ jobs:
           for m in $targets; 
           do 
           echo "构建 $m 固件"
-          sudo ./build_firmware_modify $m 0
+          sudo ./build_firmware_ci $m 0
           #if [ $? = 0 ]; then mv -f images/*.trx $images_dir/${m}_$(date +%Y%m%d).trx; else exit 1; fi; \
           if [ $? = 0 ]; then 
           sudo mv -f images/*.trx $images_dir/${m}.trx
