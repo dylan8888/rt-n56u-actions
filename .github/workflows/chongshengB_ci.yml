@@ -135,6 +135,9 @@ jobs:
         with:
           format: YYYYMMDD
           utcOffset: "+08:00"
+      - name: Change htop URL
+        run: |
+          sed -i 's#https://bintray.com/htop/source/download_file?file_path=htop-3.0.2.tar.gz#https://raw.githubusercontent.com/hanwckf/rt-n56u/master/trunk/user/htop/htop-3.0.2.tar.gz#g' $work_dir/user/htop/Makefile
       - name: Start build firmware
         run: |                         # 执行构建固件
           cd $work_dir
